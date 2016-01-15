@@ -1,33 +1,33 @@
-'use strict';
-
+var path = require('path');
 var express = require('express');
-var routes = require('./app/routes/index.js');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var session = require('express-session');
-
 var app = express();
-require('dotenv').load();
-require('./app/config/passport')(passport);
+var mongoose = require('mongoose');
+var ShortLink = require('./app/models/urls.js');
+var urlLib = require('url');
 
-mongoose.connect(process.env.MONGO_URI);
 
-app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
-app.use('/public', express.static(process.cwd() + '/public'));
-app.use('/common', express.static(process.cwd() + '/app/common'));
+mongoose.connect('mongodb://localhost:27017/clementinejs');
 
-app.use(session({
-	secret: 'secretClementine',
-	resave: false,
-	saveUninitialized: true
-}));
+app.get('/new/:newlink',function(req,res){
+	var newLink = new ShortLink({ shortcut: Math.floor((Math.random() * 99999) + 1).toString(),
+								url: req.params.newlink
+	});
+	
+	newLink.save(function(err,newLink){
+		if(err) return console.error(err);
+		res.json(newLink.shortcut);
+	});
+});
 
-app.use(passport.initialize());
-app.use(passport.session());
 
-routes(app, passport);
+app.get('/:idnum',function(req,res){
+   ShortLink.findOne({ 'shortcut': req.params.idnum }, { '_id': false })
+		.exec(function (err, result) {
+			if (err) { throw err; }
+
+			res.json(result.url);
+		}); 
+});
 
 var port = process.env.PORT || 8080;
-app.listen(port,  function () {
-	console.log('Node.js listening on port ' + port + '...');
-});
+app.listen(port);
