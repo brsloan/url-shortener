@@ -7,3 +7,5 @@ Simply append "/new/http://www.yourURL.com" to this site's URL and activate!
 Prepare to have your mind blown when it returns a JSON object with a new, shortened URL!
 
 Wow! It forwards you to the saved URL! LIKE MAGIC!
+
+Uses Node, Express, and MongoDb.
