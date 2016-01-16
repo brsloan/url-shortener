@@ -1,6 +1,7 @@
 'use strict';
 
 var ShortLink = require('../models/shortlinks.js');
+var path = process.cwd();
 
 function ShortLinkHandler () {
     
@@ -11,7 +12,9 @@ function ShortLinkHandler () {
     	
     	newLink.save(function(err,newLink){
     		if(err) return console.error(err);
-    		res.json(newLink.shortcut);
+    		res.json({ old_url: newLink.url,
+    		    new_url: req.protocol + '://' + req.hostname + '/' + newLink.shortcut
+    		});
     	});	
     };
     

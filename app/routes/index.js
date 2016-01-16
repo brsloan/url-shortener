@@ -14,6 +14,9 @@ module.exports = function (app) {
     	res.json({error: 'Submitted url must be of format http://www.example.com'});
     });
 
+    app.get('/', function(req,res){
+       res.sendFile(path + '/public/index.html'); 
+    });
 
     app.get('/:idnum',shortLinkHandler.getLink);
 };
