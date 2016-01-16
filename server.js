@@ -2,8 +2,9 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var routes = require('./app/routes/index.js');
+require('dotenv').load();
 
-mongoose.connect('mongodb://localhost:27017/clementinejs');
+mongoose.connect(process.env.MONGO_URI);
 
 routes(app);
 
