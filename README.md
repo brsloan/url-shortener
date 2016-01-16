@@ -8,4 +8,4 @@ Prepare to have your mind blown when it returns a JSON object with a new, shorte
 
 Wow! It forwards you to the saved URL! LIKE MAGIC!
 
-Uses Node, Express, and MongoDb.
+Uses Node.js, Express, and MongoDB/Mongoose.
