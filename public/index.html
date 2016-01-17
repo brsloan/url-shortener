@@ -8,17 +8,22 @@
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 	</head>
 
-	<header>
-		<h1>Yet Another URL Shortener!</h1>
-		<h2>(Which is somewhat useless when it itself does not have a tiny URL, but you get the picture)</h2>
-	</header>
-
 	<body>
 		<div class="container">
+			<h1>Yet Another URL Shortener!</h1>
+			<h2>(Which is somewhat useless when it itself does not have a tiny URL, but you get the picture)</h2>
 			<h3>How to use:</h3>
-			<p>Simply append "<span class='urlNew'>/new/</span><span class='urlLong'>http://www.yourURL.com</span>" to this site's URL and activate!</p>
+			<p>Simply append:</p>
+			<p class="url">/new/<span class="highlight">http://www.yourURL.com</span></p>
+			<p>to this site's URL and activate!</p>
 			<p>Prepare to have your mind blown when it returns a JSON object with a new, shortened URL!</p>
-			<p>Wow! It forwards you to the saved URL! LIKE MAGIC!</p>
+			<p>For example, say you enter the following:</p>
+			<p class="url">http://infinite-shelf-7295.herokuapp.com/new/<span class="highlight">http://www.data.gov</span></p>
+			<p>You would get back:</p>
+			<p class="url">{"old_url":"http://www.data.gov","new_url":"<span class="highlight">http://infinite-shelf-7295.herokuapp.com/75448</span>"}</p>
+			<p>Wow! The new URL forwards you to the saved URL! LIKE MAGIC!</p>
+			<p>If this service were hosted under a short domain name, the produced url would almost always be far shorter than the submitted one. Thus: yet another URL shortener. How neat is that?</p>
+			<p>Kinda. It's kinda neat.</p>
 		</div>
 	</body>
 
